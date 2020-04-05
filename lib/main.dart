@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-
   final String title;
 
   @override
@@ -38,9 +37,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
- List<String>
- texts
- =["apple","banana","c","d"];
+  List<String> texts = ["apple", "banana", "c", "d", "efg"];
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +46,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("hello wolrd!!!!"),
       ),
       body: Center(
-        child:
-          ListView.builder(
+        child: ListView.builder(
             itemCount: texts.length,
-              itemBuilder: (_, index) => ListTile(
-            title: Text(texts[index]),
-                subtitle: Text("subtitle"),
-          )
-
-        ),
+            itemBuilder: (_, index) => ListTile(
+                  title: Text(texts[index]),
+                  subtitle: Text("subtitle"),
+                )),
 //        Column(
 //          mainAxisAlignment: MainAxisAlignment.start,
 //          crossAxisAlignment: CrossAxisAlignment.end,
@@ -95,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         },
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
