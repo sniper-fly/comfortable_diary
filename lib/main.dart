@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/create_entry.dart';
 import 'diary.dart';
+import 'diary_detail.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //List<String> texts = ["apple", "banana", "c", "d", "efg"];
   List<Diary> diaries = [
-    Diary("name", "title"),
+    Diary("name", "title", "content"),
   ];
 
   @override
@@ -55,32 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (_, index) => ListTile(
                   title: Text(diaries[index].title),
                   subtitle: Text(diaries[index].name),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return DiaryDetail(diaries[index]);
+                        },
+                      ),
+                    );
+                  }
                 )),
-//        Column(
-//          mainAxisAlignment: MainAxisAlignment.start,
-//          crossAxisAlignment: CrossAxisAlignment.end,
-//
-//          children: <Widget>[
-//
-//            Container(
-//              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 50),
-//              margin: EdgeInsets.only(top: 20),
-//              color: Colors.cyan,
-//              height: 200,
-//              width: 300,
-//              child: Text(
-//                'push a!',style: TextStyle(color: Colors.red),
-//              ),
-//            ),
-//            Text(
-//              '$_counter',
-//              style: Theme.of(context).textTheme.display1,
-//            ),
-//            Text(
-//              'hoge'
-//            )
-//          ],
-//        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
