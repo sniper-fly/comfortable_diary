@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CreateEntry extends StatelessWidget {
+class CreateEntry extends StatefulWidget {
+  @override
+  _CreateEntryState createState() => _CreateEntryState();
+}
+
+class _CreateEntryState extends State<CreateEntry> {
+  String textFieldValue = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,7 +16,18 @@ class CreateEntry extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Text("create new entry"),
-            TextField()
+            TextField(
+              onChanged: (text){
+                textFieldValue = text;
+                //print(text);
+              },
+            ),
+            FlatButton(
+              child: Icon(Icons.add_circle),
+              onPressed: (){
+                print(textFieldValue);
+              },
+            )
           ],
         ));
   }
