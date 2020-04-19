@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/create_entry.dart';
+import 'diary.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,7 +38,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> texts = ["apple", "banana", "c", "d", "efg"];
+  //List<String> texts = ["apple", "banana", "c", "d", "efg"];
+  List<Diary> diaries = [
+    Diary("name", "title"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: ListView.builder(
-            itemCount: texts.length,
+            itemCount: diaries.length,
             itemBuilder: (_, index) => ListTile(
-                  title: Text(texts[index]),
-                  subtitle: Text("subtitle"),
+                  title: Text(diaries[index].title),
+                  subtitle: Text(diaries[index].name),
                 )),
 //        Column(
 //          mainAxisAlignment: MainAxisAlignment.start,
