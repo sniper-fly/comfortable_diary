@@ -39,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //List<String> texts = ["apple", "banana", "c", "d", "efg"];
   List<Diary> diaries = [
     Diary("name", "title", "content"),
   ];
@@ -48,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("hello wolrd!!!!"),
+        title: Text("comfortable diary"),
       ),
       body: Center(
         child: ListView.builder(
@@ -70,10 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
+          //画面遷移の一連コマンド、return の値を遷移したいページにしていすればおｋ
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
                 return CreateEntry();
+                //画面遷移ここまで
               },
             ),
           );
