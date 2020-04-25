@@ -13,17 +13,12 @@ class DiaryDetail extends StatelessWidget {
           title: Center(child: Text(diary.title))
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(
-              width: 100.0,
-              height: 100.0,
-              child: Column(
-                children: <Widget>[
-                  Text(diary.name),
-                  Text("hogehoge")
-                ],
-              )
-          ),
+          SizedBox(height: 20,),
+          Text(diary.createdAt, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+          Divider(),
+          SizedBox(height: 10,),
           Text(diary.content),
         ],
       )
