@@ -1,8 +1,8 @@
 class Diary{
   final String title;
-  final String name;
+  final String createdAt;
   final String content;
 
-  Diary(this.name, this.title, this.content);
+  Diary(this.createdAt, this.title, this.content);
 }
 

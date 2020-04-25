@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/create_entry.dart';
+import 'package:intl/intl.dart';
 import 'diary.dart';
 import 'diary_detail.dart';
 
@@ -39,8 +40,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static final String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
   List<Diary> diaries = [
-    Diary("name", "title", "content"),
+    Diary(strDate, "title", "content"),
   ];
 
   @override
@@ -54,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
             itemCount: diaries.length,
             itemBuilder: (_, index) => ListTile(
                   title: Text(diaries[index].title),
-                  subtitle: Text(diaries[index].name),
+                  subtitle: Text(diaries[index].createdAt),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
