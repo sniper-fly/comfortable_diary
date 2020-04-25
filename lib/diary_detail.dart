@@ -17,9 +17,12 @@ class DiaryDetail extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 20,),
           Text(diary.createdAt, style: TextStyle(fontSize: 25), textAlign: TextAlign.center,),
-          Divider(),
           SizedBox(height: 10,),
-          Text(diary.content),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(diary.content),
+          ),
         ],
       )
 

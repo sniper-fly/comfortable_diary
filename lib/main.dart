@@ -41,8 +41,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static final String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
+  static String content = """hello world apple banana cake desert egg folk gorilla
+  hoge hage house icon json kaggle lemon monkey nallow option parse question relation\
+  station tuition union various wrong xenophobia young zero""";
   List<Diary> diaries = [
-    Diary(strDate, "title", "content"),
+    Diary(strDate, "title", content),
   ];
 
   @override
