@@ -16,7 +16,7 @@ class DiaryDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           SizedBox(height: 20,),
-          Text(diary.createdAt, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+          Text(diary.createdAt, style: TextStyle(fontSize: 25), textAlign: TextAlign.center,),
           Divider(),
           SizedBox(height: 10,),
           Text(diary.content),
