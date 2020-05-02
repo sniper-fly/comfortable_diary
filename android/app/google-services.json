@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "394388692471",
+    "firebase_url": "https://comfortable-diary.firebaseio.com",
+    "project_id": "comfortable-diary",
+    "storage_bucket": "comfortable-diary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394388692471:android:84bc3d3682e456fdf1e2f2",
+        "android_client_info": {
+          "package_name": "com.example.flutterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394388692471-1fe8ork21iaecg6nao58h9v9ukgth6c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1gF6gmPnB5Za_Lot9w9yazkM7J1uQW28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394388692471-1fe8ork21iaecg6nao58h9v9ukgth6c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
