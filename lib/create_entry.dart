@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'diary.dart';
 
 class CreateEntry extends StatefulWidget {
   @override
@@ -11,6 +13,14 @@ class _CreateEntryState extends State<CreateEntry> {
   String titleText = '';
   String articleText = '';
   String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
+
+  void  createDiary(String strTitle, String strArticle) {
+    Firestore.instance.collection("diaries").add({
+      "title": strTitle,
+      "article" : strArticle,
+      "createdAt": DateTime.now()
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +50,9 @@ class _CreateEntryState extends State<CreateEntry> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: (){
-                  print(articleText);
+                  print("before");
+                  createDiary(titleText, articleText);
+                  print("after");
                 },
               )
             ],
