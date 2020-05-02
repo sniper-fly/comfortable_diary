@@ -31,14 +31,13 @@ class _CreateEntryState extends State<CreateEntry> {
               maxLines: null,
               onChanged: (article){
                 articleText = article;
-                setState(() {
-                });
+//                setState(() {
+//                });
               },
             ),
             FlatButton(
-              child: Text(articleText),//Icon(Icons.add_circle),
+              child: Icon(Icons.add_circle),
               onPressed: (){
-                //なぜかprintされない
                 print(articleText);
               },
             )
