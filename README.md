@@ -1,6 +1,6 @@
-# flutterapp
+# comfortable diary
 
-A new Flutter application.
+A practice of creating diary app.
 
 ## Getting Started
 
