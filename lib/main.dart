@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/create_entry.dart';
@@ -31,10 +32,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static final String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
-  static String content = """hello world apple banana cake desert egg folk gorilla
+  static final String strDate =
+      DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
+  static String content =
+      """hello world apple banana cake desert egg folk gorilla
   hoge hage house icon json kaggle lemon monkey nallow option parse question relation\
   station tuition union various wrong xenophobia young zero""";
+
   List<Diary> diaries = [
     Diary(strDate, "title", content),
   ];
@@ -45,22 +49,36 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("comfortable diary"),
       ),
-      body: Center(
-        child: ListView.builder(
-            itemCount: diaries.length,
-            itemBuilder: (_, index) => ListTile(
-                  title: Text(diaries[index].title),
-                  subtitle: Text(diaries[index].createdAt),
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return DiaryDetail(diaries[index]);
-                        },
-                      ),
-                    );
-                  }
-                )),
+      body: StreamBuilder(
+        stream: Firestore.instance.collection('diaries').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return (Text('Loading data..'));
+          }
+          return Center(
+            child: ListView.builder(
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (_, index) => ListTile(
+                title: Text(snapshot.data.documents[index]["title"]),
+
+//                  timestampはstringじゃないので一旦停止
+//                subtitle: Text(snapshot.data.documents[index]["createdAt"]),
+
+//                diaryclassと連携できないため画面遷移を停止
+//                onTap: () {
+//                  Navigator.of(context).push(
+//                    MaterialPageRoute(
+//                      builder: (context) {
+//                        return DiaryDetail(diaries[index]);
+//                      },
+//                    ),
+//                  );
+//                },
+
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
