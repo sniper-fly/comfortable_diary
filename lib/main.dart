@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   List<dynamic> rowDiaries = [];
-  List<Diary> diaries = [];
+  final List<Diary> diaries = [];
   int idx;
 
   @override
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
             diaries.add(Diary(
                 rowDiaries[idx]["createdAt"],
                 rowDiaries[idx]["title"],
-                rowDiaries[idx]["artile"]));
+                rowDiaries[idx]["article"]));
             idx++;
           }
 
