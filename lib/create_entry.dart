@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutterapp/main.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'diary.dart';
@@ -50,9 +51,14 @@ class _CreateEntryState extends State<CreateEntry> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: (){
-                  print("before");
                   createDiary(titleText, articleText);
-                  print("after");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return (MyHomePage());
+                      },
+                    ),
+                  );
                 },
               )
             ],
