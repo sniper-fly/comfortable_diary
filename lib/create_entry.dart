@@ -19,7 +19,7 @@ class _CreateEntryState extends State<CreateEntry> {
     Firestore.instance.collection("diaries").add({
       "title": strTitle,
       "article" : strArticle,
-      "createdAt": DateTime.now()
+      "createdAt": DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now()),
     });
   }
 
