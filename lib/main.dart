@@ -36,8 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   List<dynamic> rowDiaries = [];
-  final List<Diary> diaries = [];
-  int idx;
+  List<Diary> diaries = [];
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
           rowDiaries = snapshot.data.documents;
 
 //          diariesに,Diary classに合う形で加工して代入
-          idx = 0;
-          while (idx < rowDiaries.length) {
-            diaries.add(Diary(
-                rowDiaries[idx]["createdAt"],
-                rowDiaries[idx]["title"],
-                rowDiaries[idx]["article"]));
-            idx++;
-          }
+          diaries = rowDiaries.map((item) => Diary(item["createdAt"], item["title"], item["article"])).toList();
 
           return Center(
             child: ListView.builder(
