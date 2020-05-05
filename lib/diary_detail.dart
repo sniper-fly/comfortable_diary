@@ -27,7 +27,7 @@ class DiaryDetail extends StatelessWidget {
             Divider(),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(diary.content),
+              child: Text(diary.article),
             ),
           ],
         ));

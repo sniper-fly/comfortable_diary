@@ -32,16 +32,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static final String strDate =
-      DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
-  static String content =
-      """hello world apple banana cake desert egg folk gorilla
-  hoge hage house icon json kaggle lemon monkey nallow option parse question relation\
-  station tuition union various wrong xenophobia young zero""";
+  static final String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
 
-  List<Diary> diaries = [
-    Diary(strDate, "title", content),
-  ];
+
+  List<dynamic> rowDiaries = [];
+  List<Diary> diaries = [];
+  int idx;
 
   @override
   Widget build(BuildContext context) {
@@ -55,25 +51,38 @@ class _MyHomePageState extends State<MyHomePage> {
           if (!snapshot.hasData) {
             return (Text('Loading data..'));
           }
+
+//          rowDiariesは以下のキーを持つ辞書のリスト
+//          "article":<string>
+//          "createdAt":<string>
+//          "title":<string>
+          rowDiaries = snapshot.data.documents;
+
+//          diariesに,Diary classに合う形で加工して代入
+          idx = 0;
+          while (idx < rowDiaries.length) {
+            diaries.add(Diary(
+                rowDiaries[idx]["createdAt"],
+                rowDiaries[idx]["title"],
+                rowDiaries[idx]["artile"]));
+            idx++;
+          }
+
           return Center(
             child: ListView.builder(
               itemCount: snapshot.data.documents.length,
               itemBuilder: (_, index) => ListTile(
-                title: Text(snapshot.data.documents[index]["title"]),
-
-//                  timestampはstringじゃないので一旦停止
-//                subtitle: Text(snapshot.data.documents[index]["createdAt"]),
-
-//                diaryclassと連携できないため画面遷移を停止
-//                onTap: () {
-//                  Navigator.of(context).push(
-//                    MaterialPageRoute(
-//                      builder: (context) {
-//                        return DiaryDetail(diaries[index]);
-//                      },
-//                    ),
-//                  );
-//                },
+                title: Text(diaries[index].title),
+                subtitle: Text(diaries[index].createdAt),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return DiaryDetail(diaries[index]);
+                      },
+                    ),
+                  );
+                },
 
               ),
             ),
