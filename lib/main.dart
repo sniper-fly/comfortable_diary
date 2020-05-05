@@ -58,7 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
           rowDiaries = snapshot.data.documents;
 
 //          diariesに,Diary classに合う形で加工して代入
-          diaries = rowDiaries.map((item) => Diary(item["createdAt"], item["title"], item["article"])).toList();
+          diaries = rowDiaries.map((item) =>
+              Diary(
+                  DateFormat('yyyy-MM-dd - kk:mm').format(item["createdAt"].toDate()),
+                  item["title"],
+                  item["article"]
+              )
+          ).toList();
 
           return Center(
             child: ListView.builder(
