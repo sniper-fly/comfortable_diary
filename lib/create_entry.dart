@@ -13,7 +13,6 @@ class CreateEntry extends StatefulWidget {
 class _CreateEntryState extends State<CreateEntry> {
   String titleText = '';
   String articleText = '';
-  String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
 
   void  createDiary(String strTitle, String strArticle) {
     Firestore.instance.collection("diaries").add({
@@ -31,7 +30,6 @@ class _CreateEntryState extends State<CreateEntry> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              Text(strDate),
               Text("please enter new entry TITLE"),
               TextField(
                 onChanged: (entryTitle){
