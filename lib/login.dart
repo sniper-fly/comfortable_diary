@@ -15,7 +15,7 @@ class _LoginEntryState extends State<LoginPage> {
     String password;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Login")),
+      appBar: AppBar(title: Text("Login Menu")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -35,17 +35,28 @@ class _LoginEntryState extends State<LoginPage> {
                   password = pass;
                 },
               ),
-              FlatButton(
-                child: Icon(Icons.chevron_right),
-                onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return (MyHomePage());
-                      },
-                    ),
-                  );
-                },
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 25.0),
+                width: double.infinity,
+                child: FlatButton(
+
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)
+                  ),
+                  color: Colors.lightBlue,
+                  child: Text('LOGIN', style: TextStyle(fontSize: 20.0),),
+                  
+                  //以下画面遷移
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return (MyHomePage());
+                        },
+                      ),
+                    );
+                  },
+                ),
               )
             ],
           ),
