@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutterapp/main.dart';
-import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'diary.dart';
 
 class CreateEntry extends StatefulWidget {
   @override
@@ -13,13 +11,12 @@ class CreateEntry extends StatefulWidget {
 class _CreateEntryState extends State<CreateEntry> {
   String titleText = '';
   String articleText = '';
-  String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
 
   void  createDiary(String strTitle, String strArticle) {
     Firestore.instance.collection("diaries").add({
       "title": strTitle,
       "article" : strArticle,
-      "createdAt": DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now()),
+      "createdAt": DateTime.now(),
     });
   }
 
@@ -31,7 +28,6 @@ class _CreateEntryState extends State<CreateEntry> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              Text(strDate),
               Text("please enter new entry TITLE"),
               TextField(
                 onChanged: (entryTitle){
