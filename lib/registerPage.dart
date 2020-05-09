@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +51,13 @@ class _RegisterEntryState extends State<RegisterPage> {
                   
                   //以下画面遷移
                   onPressed: () async{
-                    FirebaseAuth _auth;
+                    FirebaseAuth _auth = FirebaseAuth.instance;
                     final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
-                      email: 'an email',
-                      password: 'a password',
+                      email: userMail,
+                      password: password,
                     )).user;
+                    await Firestore.instance.collection("users")
+                        .document(user.uid).setData({"email":user.email});
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
