@@ -51,12 +51,9 @@ class _LoginEntryState extends State<LoginPage> {
                   //以下画面遷移
                   onPressed: () async{
                     FirebaseAuth _auth = FirebaseAuth.instance;
-                    final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
-                      email: userMail,
-                      password: password,
-                    )).user;
-                    await Firestore.instance.collection("users")
-                        .document(user.uid).setData({"email":user.email});
+                    await _auth.signInWithEmailAndPassword(
+                        email: userMail, password: password
+                    );
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
