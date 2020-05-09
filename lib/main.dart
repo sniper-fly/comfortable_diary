@@ -5,6 +5,7 @@ import 'package:flutterapp/create_entry.dart';
 import 'package:intl/intl.dart';
 import 'diary.dart';
 import 'diary_detail.dart';
+import 'login.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'a'),
+      home: LoginPage()
     );
   }
 }
