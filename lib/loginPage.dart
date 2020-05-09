@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class RegisterPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _RegisterEntryState createState() => _RegisterEntryState();
+  _LoginEntryState createState() => _LoginEntryState();
 }
 
-class _RegisterEntryState extends State<RegisterPage> {
+class _LoginEntryState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class _RegisterEntryState extends State<RegisterPage> {
     String password;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Register Menu")),
+        appBar: AppBar(title: Text("Login Menu")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -43,11 +43,11 @@ class _RegisterEntryState extends State<RegisterPage> {
                 child: FlatButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)
+                      borderRadius: BorderRadius.circular(30.0)
                   ),
                   color: Colors.lightBlue,
-                  child: Text('REGISTER', style: TextStyle(fontSize: 20.0),),
-                  
+                  child: Text('LOGIN', style: TextStyle(fontSize: 20.0),),
+
                   //以下画面遷移
                   onPressed: () async{
                     FirebaseAuth _auth = FirebaseAuth.instance;
