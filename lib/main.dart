@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/create_entry.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'diary.dart';
 import 'diary_detail.dart';
 import 'registerPage.dart';
+import 'package:rxdart/rxdart.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,13 +44,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final user = _auth.currentUser();
     return Scaffold(
       appBar: AppBar(
         title: Text("comfortable diary"),
       ),
       body: StreamBuilder(
-        stream: Firestore.instance.collection('diaries').snapshots(),
-        builder: (context, snapshot) {
+        stream: FirebaseAuth.instance.onAuthStateChanged.flatMap(
+      (user) => Firestore.instance
+          .collection("users")
+          .document(user.uid)
+          .collection("diaries")
+          .snapshots()),
+
+      builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return (Text('Loading data..'));
           }
