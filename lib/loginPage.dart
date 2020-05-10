@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,20 +13,20 @@ class _LoginEntryState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    String LoginID;
+    String userMail;
     String password;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Login Menu")),
+        appBar: AppBar(title: Text("Login Menu")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
               SizedBox(height: 20,),
-              Text("please enter your login ID"),
+              Text("please enter your e-mail"),
               TextField(
                 onChanged: (loginName){
-                  LoginID = loginName;
+                  userMail = loginName;
                 },
               ),
               SizedBox(height: 20,),
@@ -41,13 +43,17 @@ class _LoginEntryState extends State<LoginPage> {
                 child: FlatButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)
+                      borderRadius: BorderRadius.circular(30.0)
                   ),
                   color: Colors.lightBlue,
                   child: Text('LOGIN', style: TextStyle(fontSize: 20.0),),
-                  
+
                   //以下画面遷移
-                  onPressed: (){
+                  onPressed: () async{
+                    FirebaseAuth _auth = FirebaseAuth.instance;
+                    await _auth.signInWithEmailAndPassword(
+                        email: userMail, password: password
+                    );
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
