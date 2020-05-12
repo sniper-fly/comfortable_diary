@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/loginPage.dart';
-import 'package:flutterapp/registerPage.dart';
+import 'package:flutterapp/login_page.dart';
+import 'package:flutterapp/register_page.dart';
 
 class InitialPage extends StatelessWidget {
 
