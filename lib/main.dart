@@ -36,9 +36,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static final String strDate = DateFormat('yyyy-MM-dd - kk:mm').format(DateTime.now());
-
-
   List<dynamic> rowDiaries = [];
   List<Diary> diaries = [];
 
@@ -46,73 +43,91 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final user = _auth.currentUser();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("comfortable diary"),
-      ),
-      body: StreamBuilder(
-        stream: FirebaseAuth.instance.onAuthStateChanged.flatMap(
-      (user) => Firestore.instance
-          .collection("users")
-          .document(user.uid)
-          .collection("diaries")
-          .snapshots()),
-
-      builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return (Text('Loading data..'));
-          }
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("comfortable diary"),
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Text("diary")),
+              Tab(
+                icon: Text("review"),
+              )
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            //tab element one
+            StreamBuilder(
+              stream: FirebaseAuth.instance.onAuthStateChanged.flatMap((user) =>
+                  Firestore.instance
+                      .collection("users")
+                      .document(user.uid)
+                      .collection("diaries")
+                      .snapshots()),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return (Text('Loading data..'));
+                }
 
 //          rowDiariesは以下のキーを持つ辞書のリスト
 //          "article":<string>
 //          "createdAt":<string>
 //          "title":<string>
-          rowDiaries = snapshot.data.documents;
+                rowDiaries = snapshot.data.documents;
 
 //          diariesに,Diary classに合う形で加工して代入
-          diaries = rowDiaries.map((item) =>
-              Diary(
-                  DateFormat('yyyy-MM-dd - kk:mm').format(item["createdAt"].toDate()),
-                  item["title"],
-                  item["article"]
-              )
-          ).toList();
+                diaries = rowDiaries
+                    .map((item) => Diary(
+                        DateFormat('yyyy-MM-dd - kk:mm')
+                            .format(item["createdAt"].toDate()),
+                        item["title"],
+                        item["article"]))
+                    .toList();
 
-          return Center(
-            child: ListView.builder(
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (_, index) => ListTile(
-                title: Text(diaries[index].title),
-                subtitle: Text(diaries[index].createdAt),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return DiaryDetail(diaries[index]);
+                return Center(
+                  child: ListView.builder(
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (_, index) => ListTile(
+                      title: Text(diaries[index].title),
+                      subtitle: Text(diaries[index].createdAt),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DiaryDetail(diaries[index]);
+                            },
+                          ),
+                        );
                       },
                     ),
-                  );
-                },
-
-              ),
-            ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          //画面遷移の一連コマンド、return の値を遷移したいページにしていすればおｋ
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return CreateEntry();
+                  ),
+                );
               },
             ),
-          );
-          //画面遷移ここまで
-        },
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+             //tab element two
+            Center(
+              child: Text("hoge"),
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            //画面遷移の一連コマンド、return の値を遷移したいページにしていすればおｋ
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return CreateEntry();
+                },
+              ),
+            );
+            //画面遷移ここまで
+          },
+        ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
