@@ -9,6 +9,7 @@ import 'diary.dart';
 import 'diary_detail.dart';
 import 'register_page.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:flutterapp/diary_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final user = _auth.currentUser();
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -59,55 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: TabBarView(
           children: [
-            //tab element one
-            StreamBuilder(
-              stream: FirebaseAuth.instance.onAuthStateChanged.flatMap((user) =>
-                  Firestore.instance
-                      .collection("users")
-                      .document(user.uid)
-                      .collection("diaries")
-                      .snapshots()),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return (Text('Loading data..'));
-                }
-
-//          rowDiariesは以下のキーを持つ辞書のリスト
-//          "article":<string>
-//          "createdAt":<string>
-//          "title":<string>
-                rowDiaries = snapshot.data.documents;
-
-//          diariesに,Diary classに合う形で加工して代入
-                diaries = rowDiaries
-                    .map((item) => Diary(
-                        DateFormat('yyyy-MM-dd - kk:mm')
-                            .format(item["createdAt"].toDate()),
-                        item["title"],
-                        item["article"]))
-                    .toList();
-
-                return Center(
-                  child: ListView.builder(
-                    itemCount: snapshot.data.documents.length,
-                    itemBuilder: (_, index) => ListTile(
-                      title: Text(diaries[index].title),
-                      subtitle: Text(diaries[index].createdAt),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return DiaryDetail(diaries[index]);
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
-             //tab element two
+            showDiaries(rowDiaries, diaries),
             Center(
               child: Text("hoge"),
             )
@@ -130,4 +84,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  //画面遷移を関数化したい
+//  void navigatePage(Widget page) {
+//    Navigator.of(context).push(
+//      MaterialPageRoute(
+//        builder: (context) {
+//          return page;
+//        },
+//      ),
+//    );
+//  }
 }
+
