@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/functions.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -43,13 +44,7 @@ Widget showDiaries(List<dynamic> rowDiaries, List<Diary> diaries) {
             title: Text(diaries[index].title),
             subtitle: Text(diaries[index].createdAt),
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DiaryDetail(diaries[index]);
-                  },
-                ),
-              );
+              navigatePage(context, DiaryDetail(diaries[index]));
             },
           ),
         ),

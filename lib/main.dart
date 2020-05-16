@@ -28,57 +28,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  List<dynamic> rowDiaries = [];
-  List<Diary> diaries = [];
-
-  @override
-  Widget build(BuildContext context) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final user = _auth.currentUser();
-
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("comfortable diary"),
-          bottom: TabBar(
-            tabs: [
-              Tab(icon: Text("diary")),
-              Tab(
-                icon: Text("review"),
-              )
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            showDiaries(rowDiaries, diaries),
-            Center(
-              child: Text("hoge"),
-            )
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            //日記を追加する
-            navigatePage(context, CreateEntry());
-          },
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      ),
-    );
-  }
-}
   //画面遷移を関数化したい
 //  void navigatePage(Widget page) {
 //    Navigator.of(context).push(

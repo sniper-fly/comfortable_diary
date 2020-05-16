@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutterapp/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'main_page.dart';
+
 class CreateEntry extends StatefulWidget {
   @override
   _CreateEntryState createState() => _CreateEntryState();

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/functions.dart';
 import 'create_entry.dart';
 import 'diary.dart';
 import 'diary_list.dart';
@@ -49,14 +50,7 @@ class _MainPageState extends State<MainPage> {
           child: Icon(Icons.add),
           onPressed: () {
             //画面遷移の一連コマンド、return の値を遷移したいページにしていすればおｋ
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return CreateEntry();
-                },
-              ),
-            );
-            //画面遷移ここまで
+            navigatePage(context, CreateEntry());
           },
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
