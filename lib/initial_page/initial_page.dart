@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/loginPage.dart';
-import 'package:flutterapp/registerPage.dart';
+import 'package:flutterapp/functions.dart';
+import 'package:flutterapp/initial_page/register_page.dart';
+
+import 'login_page.dart';
 
 class InitialPage extends StatelessWidget {
 
@@ -18,7 +20,7 @@ class InitialPage extends StatelessWidget {
           Container(
             child: RaisedButton(
               child: const Text('registration'),
-              onPressed: () => _pushPage(context, RegisterPage()),
+              onPressed: () => navigatePage(context, RegisterPage())
             ),
             padding: const EdgeInsets.all(16),
             alignment: Alignment.center,
@@ -26,19 +28,15 @@ class InitialPage extends StatelessWidget {
           Container(
             child: RaisedButton(
               child: const Text('SignIn/SignOut'),
-              onPressed: () => _pushPage(context, LoginPage()),
+              onPressed: () {
+                navigatePage(context, LoginPage());
+              }
             ),
             padding: const EdgeInsets.all(16),
             alignment: Alignment.center,
           ),
         ],
       ),
-    );
-  }
-
-  void _pushPage(BuildContext context, Widget page) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => page),
     );
   }
 }

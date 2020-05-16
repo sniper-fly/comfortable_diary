@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'main.dart';
+import 'package:flutterapp/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../main_page.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -57,13 +59,7 @@ class _RegisterEntryState extends State<RegisterPage> {
                     )).user;
                     await Firestore.instance.collection("users")
                         .document(user.uid).setData({"email":user.email});
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return (MyHomePage());
-                        },
-                      ),
-                    );
+                    navigatePage(context, MainPage());
                   },
                 ),
               )
