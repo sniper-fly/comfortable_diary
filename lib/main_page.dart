@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/functions.dart';
 import 'create_entry.dart';
 import 'diary.dart';
-import 'diary_list.dart';
+import 'diary_list/diary_list.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -40,7 +40,7 @@ class _MainPageState extends State<MainPage> {
         ),
         body: TabBarView(
           children: [
-            showDiaries(rowDiaries, diaries),
+            DiaryList(),
             Center(
               child: Text("hoge"),
             )
@@ -49,7 +49,6 @@ class _MainPageState extends State<MainPage> {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            //画面遷移の一連コマンド、return の値を遷移したいページにしていすればおｋ
             navigatePage(context, CreateEntry());
           },
         ), // This trailing comma makes auto-formatting nicer for build methods.

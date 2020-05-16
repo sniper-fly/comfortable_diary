@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/functions.dart';
-import 'package:flutterapp/login_page.dart';
-import 'package:flutterapp/register_page.dart';
+import 'package:flutterapp/initial_page/register_page.dart';
+
+import 'login_page.dart';
 
 class InitialPage extends StatelessWidget {
 
@@ -19,7 +20,7 @@ class InitialPage extends StatelessWidget {
           Container(
             child: RaisedButton(
               child: const Text('registration'),
-              onPressed: () => _pushPage(context, RegisterPage()),
+              onPressed: () => navigatePage(context, RegisterPage())
             ),
             padding: const EdgeInsets.all(16),
             alignment: Alignment.center,

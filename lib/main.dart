@@ -4,13 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/create_entry.dart';
 import 'package:flutterapp/functions.dart';
-import 'package:flutterapp/initial_page.dart';
 import 'package:intl/intl.dart';
 import 'diary.dart';
-import 'diary_detail.dart';
-import 'register_page.dart';
+import 'initial_page/initial_page.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:flutterapp/diary_list.dart';
 
 void main() => runApp(MyApp());
 

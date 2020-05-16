@@ -1,18 +1,17 @@
-import 'package:flutterapp/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterapp/functions.dart';
-import 'package:flutterapp/main_page.dart';
-import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatefulWidget {
+import '../main_page.dart';
+
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginEntryState createState() => _LoginEntryState();
+  _RegisterEntryState createState() => _RegisterEntryState();
 }
 
-class _LoginEntryState extends State<LoginPage> {
+class _RegisterEntryState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class _LoginEntryState extends State<LoginPage> {
     String password;
 
     return Scaffold(
-        appBar: AppBar(title: Text("Login Menu")),
+      appBar: AppBar(title: Text("Register Menu")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -46,17 +45,20 @@ class _LoginEntryState extends State<LoginPage> {
                 child: FlatButton(
 
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)
+                    borderRadius: BorderRadius.circular(30.0)
                   ),
                   color: Colors.lightBlue,
-                  child: Text('LOGIN', style: TextStyle(fontSize: 20.0),),
-
+                  child: Text('REGISTER', style: TextStyle(fontSize: 20.0),),
+                  
                   //以下画面遷移
                   onPressed: () async{
                     FirebaseAuth _auth = FirebaseAuth.instance;
-                    await _auth.signInWithEmailAndPassword(
-                        email: userMail, password: password
-                    );
+                    final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
+                      email: userMail,
+                      password: password,
+                    )).user;
+                    await Firestore.instance.collection("users")
+                        .document(user.uid).setData({"email":user.email});
                     navigatePage(context, MainPage());
                   },
                 ),

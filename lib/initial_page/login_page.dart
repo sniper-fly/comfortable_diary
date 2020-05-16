@@ -1,18 +1,17 @@
+import 'package:flutterapp/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterapp/functions.dart';
-import 'main.dart';
+import 'package:flutterapp/main_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'main_page.dart';
-
-class RegisterPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _RegisterEntryState createState() => _RegisterEntryState();
+  _LoginEntryState createState() => _LoginEntryState();
 }
 
-class _RegisterEntryState extends State<RegisterPage> {
+class _LoginEntryState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class _RegisterEntryState extends State<RegisterPage> {
     String password;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Register Menu")),
+        appBar: AppBar(title: Text("Login Menu")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -46,20 +45,17 @@ class _RegisterEntryState extends State<RegisterPage> {
                 child: FlatButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)
+                      borderRadius: BorderRadius.circular(30.0)
                   ),
                   color: Colors.lightBlue,
-                  child: Text('REGISTER', style: TextStyle(fontSize: 20.0),),
-                  
+                  child: Text('LOGIN', style: TextStyle(fontSize: 20.0),),
+
                   //以下画面遷移
                   onPressed: () async{
                     FirebaseAuth _auth = FirebaseAuth.instance;
-                    final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
-                      email: userMail,
-                      password: password,
-                    )).user;
-                    await Firestore.instance.collection("users")
-                        .document(user.uid).setData({"email":user.email});
+                    await _auth.signInWithEmailAndPassword(
+                        email: userMail, password: password
+                    );
                     navigatePage(context, MainPage());
                   },
                 ),
