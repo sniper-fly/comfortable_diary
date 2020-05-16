@@ -1,4 +1,7 @@
+import 'package:flutterapp/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutterapp/functions.dart';
+import 'package:flutterapp/main_page.dart';
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,13 +57,7 @@ class _LoginEntryState extends State<LoginPage> {
                     await _auth.signInWithEmailAndPassword(
                         email: userMail, password: password
                     );
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return (MyHomePage());
-                        },
-                      ),
-                    );
+                    navigatePage(context, MainPage());
                   },
                 ),
               )

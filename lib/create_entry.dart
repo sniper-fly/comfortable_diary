@@ -60,7 +60,7 @@ class _CreateEntryState extends State<CreateEntry> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return (MyHomePage());
+                        return (MainPage());
                       },
                     ),
                   );

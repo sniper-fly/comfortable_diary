@@ -60,7 +60,7 @@ class _RegisterEntryState extends State<RegisterPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return (MyHomePage());
+                          return (MainPage());
                         },
                       ),
                     );
