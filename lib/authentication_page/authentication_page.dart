@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/authentication_page/register_page.dart';
-import 'package:flutterapp/functions.dart';
+import 'package:comfortable_diary/authentication_page/register_page.dart';
+import 'package:comfortable_diary/functions.dart';
 
 import 'login_page.dart';
 

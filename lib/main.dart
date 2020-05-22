@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/initial_page.dart';
+import 'package:comfortable_diary/initial_page.dart';
 
 void main() => runApp(MyApp());
 
