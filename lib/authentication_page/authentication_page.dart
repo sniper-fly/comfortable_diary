@@ -1,13 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/authentication_page/register_page.dart';
 import 'package:flutterapp/functions.dart';
-import 'package:flutterapp/initial_page/register_page.dart';
 
 import 'login_page.dart';
 
-class InitialPage extends StatelessWidget {
-
+class AuthenticationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
