@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/functions.dart';
+import 'package:comfortable_diary/day_schedule.dart';
+import 'package:comfortable_diary/functions.dart';
 import 'create_entry.dart';
 import 'diary.dart';
 import 'diary_list/diary_list.dart';
@@ -21,20 +21,16 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final user = _auth.currentUser();
-
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text("comfortable diary"),
           bottom: TabBar(
             tabs: [
               Tab(icon: Text("diary")),
-              Tab(
-                icon: Text("review"),
-              )
+              Tab(icon: Text("review")),
+              Tab(icon: Text("day")),
             ],
           ),
         ),
@@ -42,8 +38,9 @@ class _MainPageState extends State<MainPage> {
           children: [
             DiaryList(),
             Center(
-              child: Text("hoge"),
-            )
+              child: Text("review page"),
+            ),
+            DaySchedule(),
           ],
         ),
         floatingActionButton: FloatingActionButton(
