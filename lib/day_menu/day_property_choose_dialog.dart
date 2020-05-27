@@ -12,18 +12,20 @@ class DayPropertyChooseDialog extends StatelessWidget {
           addDayProperty(Colors.red);
           Navigator.pop(context);
         },
-        child: Text("red"),
+        child: Text("red article"),
       ),
       SimpleDialogOption(
         onPressed: () {
           addDayProperty(Colors.blue);
-          Navigator.pop(context);},
-        child: Text("blue"),
+          Navigator.pop(context);
+        },
+        child: Text("blue image"),
       ),
       SimpleDialogOption(
         onPressed: () {
           addDayProperty(Colors.green);
-          Navigator.pop(context);},
+          Navigator.pop(context);
+        },
         child: Text("green"),
       ),
     ]);
