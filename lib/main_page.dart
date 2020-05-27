@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:comfortable_diary/day_schedule.dart';
+import 'package:comfortable_diary/day_menu.dart';
 import 'package:comfortable_diary/functions.dart';
 import 'create_entry.dart';
 import 'diary.dart';
@@ -40,15 +40,15 @@ class _MainPageState extends State<MainPage> {
             Center(
               child: Text("review page"),
             ),
-            DaySchedule(),
+            DayMenu(),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            navigatePage(context, CreateEntry());
-          },
-        ), // This trailing comma makes auto-formatting nicer for build methods.
+//        floatingActionButton: FloatingActionButton(
+//          child: Icon(Icons.add),
+//          onPressed: () {
+//            navigatePage(context, CreateEntry());
+//          },
+//        ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
