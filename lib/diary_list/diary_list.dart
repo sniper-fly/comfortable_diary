@@ -7,7 +7,7 @@ import 'package:comfortable_diary/functions.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 import '../create_entry.dart';
-import '../diary.dart';
+import '../class/diary.dart';
 
 class DiaryList extends StatelessWidget {
   @override
