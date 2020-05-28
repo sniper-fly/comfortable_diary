@@ -1,3 +1,6 @@
+import 'package:comfortable_diary/day_menu/day_menu.dart';
+import 'package:comfortable_diary/functions.dart';
+import 'package:comfortable_diary/main_page.dart';
 import 'package:flutter/material.dart';
 
 class InputTextProperty extends StatefulWidget {
@@ -7,6 +10,7 @@ class InputTextProperty extends StatefulWidget {
 
 class _InputTextPropertyState extends State<InputTextProperty> {
   String articleText = '';
+  String articleTitle = '';
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,9 @@ class _InputTextPropertyState extends State<InputTextProperty> {
                     border: OutlineInputBorder(),
                     labelText: 'enter your title'
                   ),
+                  onChanged: (title) {
+                    articleTitle = title;
+                  }
               ),
               SizedBox(height: 20.0,),
               TextField(
@@ -38,7 +45,8 @@ class _InputTextPropertyState extends State<InputTextProperty> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: () {
-
+                  createDiary("articles", articleTitle, articleText);
+//                  navigatePage(context, MainPage());
                 },
               )
             ],

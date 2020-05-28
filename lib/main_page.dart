@@ -41,12 +41,6 @@ class _MainPageState extends State<MainPage> {
             DayMenu(),
           ],
         ),
-//        floatingActionButton: FloatingActionButton(
-//          child: Icon(Icons.add),
-//          onPressed: () {
-//            navigatePage(context, CreateEntry());
-//          },
-//        ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
