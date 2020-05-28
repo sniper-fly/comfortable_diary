@@ -6,7 +6,7 @@ import 'package:comfortable_diary/diary_detail/diary_detail.dart';
 import 'package:comfortable_diary/functions.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
-import '../create_entry.dart';
+import './create_entry.dart';
 import '../class/diary.dart';
 
 class DiaryList extends StatelessWidget {
