@@ -6,6 +6,7 @@ import 'package:comfortable_diary/diary_detail/diary_detail.dart';
 import 'package:comfortable_diary/functions.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
+import '../create_entry.dart';
 import '../diary.dart';
 
 class DiaryList extends StatelessWidget {
@@ -38,17 +39,25 @@ class DiaryList extends StatelessWidget {
             item["article"]))
             .toList();
 
-        return Center(
-          child: ListView.builder(
-            itemCount: snapshot.data.documents.length,
-            itemBuilder: (_, index) => ListTile(
-              title: Text(diaries[index].title),
-              subtitle: Text(diaries[index].createdAt),
-              onTap: () {
-                navigatePage(context, DiaryDetail(diaries[index]));
-              },
+        return Scaffold(
+          body: Center(
+            child: ListView.builder(
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (_, index) => ListTile(
+                title: Text(diaries[index].title),
+                subtitle: Text(diaries[index].createdAt),
+                onTap: () {
+                  navigatePage(context, DiaryDetail(diaries[index]));
+                },
+              ),
             ),
           ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              navigatePage(context, CreateEntry());
+            },
+          ), // This trailing comma makes auto-formatting nicer for build methods.
         );
       },
     );
