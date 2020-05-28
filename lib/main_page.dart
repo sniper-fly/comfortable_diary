@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:comfortable_diary/day_menu/day_menu.dart';
-import 'package:comfortable_diary/functions.dart';
-import 'create_entry.dart';
 import 'diary.dart';
 import 'diary_list/diary_list.dart';
 
