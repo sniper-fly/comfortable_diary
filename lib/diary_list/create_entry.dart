@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'main_page.dart';
+import '../functions.dart';
+import '../main_page.dart';
 
 class CreateEntry extends StatefulWidget {
   @override
@@ -13,20 +11,6 @@ class CreateEntry extends StatefulWidget {
 class _CreateEntryState extends State<CreateEntry> {
   String titleText = '';
   String articleText = '';
-
-  void createDiary(String strTitle, String strArticle) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final user = await _auth.currentUser();
-    Firestore.instance
-        .collection("users")
-        .document(user.uid)
-        .collection("diaries")
-        .add({
-      "title": strTitle,
-      "article": strArticle,
-      "createdAt": DateTime.now(),
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +41,7 @@ class _CreateEntryState extends State<CreateEntry> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: () {
-                  createDiary(titleText, articleText);
+                  createDiary("diaries", titleText, articleText);
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {

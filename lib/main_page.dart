@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:comfortable_diary/day_menu.dart';
-import 'package:comfortable_diary/functions.dart';
-import 'create_entry.dart';
-import 'diary.dart';
+import 'package:comfortable_diary/day_menu/day_menu.dart';
+import 'class/diary.dart';
 import 'diary_list/diary_list.dart';
 
 class MainPage extends StatefulWidget {
@@ -43,12 +41,6 @@ class _MainPageState extends State<MainPage> {
             DayMenu(),
           ],
         ),
-//        floatingActionButton: FloatingActionButton(
-//          child: Icon(Icons.add),
-//          onPressed: () {
-//            navigatePage(context, CreateEntry());
-//          },
-//        ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
