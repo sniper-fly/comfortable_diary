@@ -1,6 +1,11 @@
+import 'package:comfortable_diary/day_menu/property_file.dart';
 import 'package:flutter/cupertino.dart';
 
 class Property {
-  String article;
-  Image image;
+  final propertyType type;
+  final String title;
+  final String body;
+  final Image image;
+
+  Property(this.type, {this.title, this.body, this.image});
 }

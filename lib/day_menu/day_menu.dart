@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:comfortable_diary/class/property.dart';
 import 'package:comfortable_diary/day_menu/day_property_choose_dialog.dart';
 import 'package:comfortable_diary/day_menu/properties/image_property.dart';
 import 'package:comfortable_diary/day_menu/properties/text_property.dart';
@@ -15,7 +16,7 @@ class _DayMenuState extends State<DayMenu> {
   String plan;
   String strToday = DateFormat('yyyy  MM/dd').format(DateTime.now());
   int itemCount = 0;
-  List<propertyType> propertyList = [];
+  List<Property> propertyList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _DayMenuState extends State<DayMenu> {
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                if (propertyList[index] == propertyType.text) {
+                if (propertyList[index].type == propertyType.text) {
                   return TextProperty();
                 } else {
                   //image
@@ -56,11 +57,11 @@ class _DayMenuState extends State<DayMenu> {
             builder: (BuildContext context) {
               return DayPropertyChooseDialog(
                 //関数Aに関数Bを渡し、関数Aの中で関数Bを実行してもらう 以下が関数A
-                (propertyType) {
+                (property) {
                   setState(
                     //setStateでやってほしい動作を書く
                     () {
-                      propertyList.add(propertyType);
+                      propertyList.add(property);
                     },
                   );
                 },
