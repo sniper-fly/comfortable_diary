@@ -55,6 +55,7 @@ class DiaryList extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
+//              FirebaseAuth.instance.signOut();
               navigatePage(context, CreateEntry());
             },
           ), // This trailing comma makes auto-formatting nicer for build methods.

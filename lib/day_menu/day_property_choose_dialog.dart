@@ -1,10 +1,11 @@
 import 'package:comfortable_diary/day_menu/input_image_property.dart';
 import 'package:comfortable_diary/day_menu/input_text_property.dart';
+import 'package:comfortable_diary/day_menu/property_file.dart';
 import 'package:flutter/material.dart';
 import 'package:comfortable_diary/functions.dart';
 
 class DayPropertyChooseDialog extends StatelessWidget {
-  final Function(Color) addDayProperty;
+  final Function(propertyType) addDayProperty;
   DayPropertyChooseDialog(this.addDayProperty);
 
   @override
@@ -14,19 +15,19 @@ class DayPropertyChooseDialog extends StatelessWidget {
       children: <Widget>[
         SimpleDialogOption(
           onPressed: () {
-            addDayProperty(Colors.red);
+            addDayProperty(propertyType.text);
             Navigator.pop(context);
-            navigatePage(context, InputTextProperty());
+//            navigatePage(context, InputTextProperty());
           },
-          child: Text("red article"),
+          child: Text("article"),
         ),
         SimpleDialogOption(
           onPressed: () {
-            addDayProperty(Colors.blue);
+            addDayProperty(propertyType.image);
             Navigator.pop(context);
-            navigatePage(context, InputImageProperty());
+//            navigatePage(context, InputImageProperty());
           },
-          child: Text("blue image"),
+          child: Text("image"),
         ),
       ],
     );
