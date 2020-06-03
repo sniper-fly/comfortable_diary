@@ -1,7 +1,5 @@
 import 'package:comfortable_diary/class/property.dart';
-import 'package:comfortable_diary/day_menu/input_image_property.dart';
 import 'package:comfortable_diary/day_menu/input_text_property.dart';
-import 'package:comfortable_diary/day_menu/property_type.dart';
 import 'package:flutter/material.dart';
 import 'package:comfortable_diary/functions.dart';
 

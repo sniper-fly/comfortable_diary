@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:comfortable_diary/class/property.dart';
 import 'package:comfortable_diary/day_menu/day_property_choose_dialog.dart';
 import 'package:comfortable_diary/day_menu/properties/image_property.dart';

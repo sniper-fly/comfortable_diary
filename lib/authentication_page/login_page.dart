@@ -1,5 +1,4 @@
 import 'package:comfortable_diary/main_page.dart';
-import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
