@@ -35,7 +35,7 @@ class _DayMenuState extends State<DayMenu> {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 if (propertyList[index].type == propertyType.text) {
-                  return TextProperty();
+                  return TextProperty(propertyList[index]);
                 } else {
                   //image
                   return ImageProperty();

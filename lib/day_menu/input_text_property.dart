@@ -53,7 +53,7 @@ class _InputTextPropertyState extends State<InputTextProperty> {
                   widget.addDayProperty(Property(propertyType.text,
                       title: articleTitle, body: articleText));
 //                  createDiary("articles", articleTitle, articleText);
-                  navigatePage(context, MainPage());
+                  Navigator.pop(context);
                 },
               )
             ],
