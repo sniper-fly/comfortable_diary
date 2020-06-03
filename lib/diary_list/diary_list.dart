@@ -47,7 +47,7 @@ class DiaryList extends StatelessWidget {
                 title: Text(diaries[index].title),
                 subtitle: Text(diaries[index].createdAt),
                 onTap: () {
-                  navigatePage(context, DiaryDetail(diaries[index]));
+                  navigatePagePush(context, DiaryDetail(diaries[index]));
                 },
               ),
             ),
@@ -56,7 +56,7 @@ class DiaryList extends StatelessWidget {
             child: Icon(Icons.add),
             onPressed: () {
 //              FirebaseAuth.instance.signOut();
-              navigatePage(context, CreateEntry());
+              navigatePagePush(context, CreateEntry());
             },
           ), // This trailing comma makes auto-formatting nicer for build methods.
         );

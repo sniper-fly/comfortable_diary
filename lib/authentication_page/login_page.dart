@@ -54,7 +54,7 @@ class _LoginEntryState extends State<LoginPage> {
                     await _auth.signInWithEmailAndPassword(
                         email: userMail, password: password
                     );
-                    navigatePage(context, MainPage());
+                    navigatePagePush(context, MainPage());
                   },
                 ),
               )

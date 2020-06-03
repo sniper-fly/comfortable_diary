@@ -18,16 +18,17 @@ class AuthenticationPage extends StatelessWidget {
           Container(
             child: RaisedButton(
               child: const Text('registration'),
-              onPressed: () => navigatePage(context, RegisterPage())
+              onPressed: () => navigatePagePush(context, RegisterPage())
             ),
             padding: const EdgeInsets.all(16),
             alignment: Alignment.center,
           ),
           Container(
             child: RaisedButton(
-              child: const Text('SignIn/SignOut'),
+              child: const Text('SignIn'),
               onPressed: () {
-                navigatePage(context, LoginPage());
+                navigatePagePush(context, LoginPage());
+
               }
             ),
             padding: const EdgeInsets.all(16),

@@ -18,7 +18,7 @@ class DayPropertyChooseDialog extends StatelessWidget {
           onPressed: () {
 //            addDayProperty(propertyType.text);
             Navigator.pop(context);
-            navigatePage(context, InputTextProperty(addDayProperty));
+            navigatePagePush(context, InputTextProperty(addDayProperty));
           },
           child: Text("article"),
         ),
