@@ -59,7 +59,12 @@ class _RegisterEntryState extends State<RegisterPage> {
                     )).user;
                     await Firestore.instance.collection("users")
                         .document(user.uid).setData({"email":user.email});
-                    navigatePagePush(context, MainPage());
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainPage(),
+                        ),
+                            (_) => false);
                   },
                 ),
               )

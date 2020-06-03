@@ -28,7 +28,6 @@ class AuthenticationPage extends StatelessWidget {
               child: const Text('SignIn'),
               onPressed: () {
                 navigatePagePush(context, LoginPage());
-
               }
             ),
             padding: const EdgeInsets.all(16),
