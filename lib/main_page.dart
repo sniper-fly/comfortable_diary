@@ -21,14 +21,13 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text("comfortable diary"),
           bottom: TabBar(
             tabs: [
               Tab(icon: Text("diary")),
-              Tab(icon: Text("review")),
               Tab(icon: Text("day")),
               Tab(icon: Text("settings"))
             ],
@@ -37,9 +36,6 @@ class _MainPageState extends State<MainPage> {
         body: TabBarView(
           children: [
             DiaryList(),
-            Center(
-              child: Text("review page"),
-            ),
             DayMenu(),
             SettingPage(),
           ],
