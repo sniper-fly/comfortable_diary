@@ -1,6 +1,6 @@
 import 'package:comfortable_diary/class/property.dart';
 import 'package:comfortable_diary/day_menu/day_menu.dart';
-import 'package:comfortable_diary/day_menu/property_file.dart';
+import 'package:comfortable_diary/day_menu/property_type.dart';
 import 'package:comfortable_diary/functions.dart';
 import 'package:comfortable_diary/main_page.dart';
 import 'package:flutter/material.dart';

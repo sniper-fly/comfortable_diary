@@ -1,4 +1,4 @@
-import 'package:comfortable_diary/day_menu/property_file.dart';
+import 'package:comfortable_diary/day_menu/property_type.dart';
 import 'package:flutter/cupertino.dart';
 
 class Property {

@@ -3,7 +3,7 @@ import 'package:comfortable_diary/class/property.dart';
 import 'package:comfortable_diary/day_menu/day_property_choose_dialog.dart';
 import 'package:comfortable_diary/day_menu/properties/image_property.dart';
 import 'package:comfortable_diary/day_menu/properties/text_property.dart';
-import 'package:comfortable_diary/day_menu/property_file.dart';
+import 'package:comfortable_diary/day_menu/property_type.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
