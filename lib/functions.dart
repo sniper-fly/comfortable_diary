@@ -13,13 +13,13 @@ void navigatePagePush(BuildContext context, Widget page) {
   );
 }
 
-void createDiary(String propertyName, String strTitle, String strArticle) async {
+void createDiary(String strTitle, String strArticle) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
       .collection("users")
       .document(user.uid)
-      .collection(propertyName)
+      .collection("property")
       .add({
     "title": strTitle,
     "article": strArticle,

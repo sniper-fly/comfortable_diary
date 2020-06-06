@@ -1,5 +1,5 @@
 import 'package:comfortable_diary/class/property.dart';
-import 'package:comfortable_diary/day_menu/property_type.dart';
+import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/material.dart';
 
 class InputTextProperty extends StatefulWidget {
@@ -47,10 +47,16 @@ class _InputTextPropertyState extends State<InputTextProperty> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: () {
-                  widget.addDayProperty(Property(propertyType.text,
-                      title: articleTitle, body: articleText));
+                  try {
+                    createDiary(articleTitle, articleText);
+                    Navigator.pop(context);
+                  }
+                  catch (error) {
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text("error!")));
+                  }
+//                  widget.addDayProperty(Property(propertyType.text,
+//                      title: articleTitle, body: articleText));
 //                  createDiary("articles", articleTitle, articleText);
-                  Navigator.pop(context);
                 },
               )
             ],
