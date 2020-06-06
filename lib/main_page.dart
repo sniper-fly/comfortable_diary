@@ -1,3 +1,4 @@
+import 'package:comfortable_diary/settings_page/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:comfortable_diary/day_menu/day_menu.dart';
@@ -27,18 +28,16 @@ class _MainPageState extends State<MainPage> {
           bottom: TabBar(
             tabs: [
               Tab(icon: Text("diary")),
-              Tab(icon: Text("review")),
               Tab(icon: Text("day")),
+              Tab(icon: Text("settings"))
             ],
           ),
         ),
         body: TabBarView(
           children: [
             DiaryList(),
-            Center(
-              child: Text("review page"),
-            ),
             DayMenu(),
+            SettingPage(),
           ],
         ),
       ),

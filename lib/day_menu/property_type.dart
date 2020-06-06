@@ -1,0 +1,3 @@
+enum propertyType {
+  image, text
+}
