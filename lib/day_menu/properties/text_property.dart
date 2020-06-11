@@ -16,8 +16,10 @@ class TextProperty extends StatelessWidget {
             context, TextPropertyDetail(property.title, property.body));
       },
       child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20.0)),
         margin: EdgeInsets.all(16.0),
-        color: Colors.red[300],
         child: Center(
           child: Text(
             property.title,

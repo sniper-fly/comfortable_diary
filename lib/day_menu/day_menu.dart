@@ -33,10 +33,10 @@ class _DayMenuState extends State<DayMenu> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
           }
-          final row_properties = snapshot.data.documents;
+          final rowProperties = snapshot.data.documents;
 
 //          diariesに,Diary classに合う形で加工して代入
-          final properties = row_properties
+          final properties = rowProperties
               .map((item) => Property(
               propertyType.text,
               item["createdAt"].toDate(),
@@ -46,6 +46,7 @@ class _DayMenuState extends State<DayMenu> {
               .toList();
 
           return Scaffold(
+            backgroundColor: Colors.grey[200],
             body: CustomScrollView(
               slivers: <Widget>[
                 SliverList(
