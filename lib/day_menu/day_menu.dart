@@ -38,11 +38,11 @@ class _DayMenuState extends State<DayMenu> {
 //          diariesに,Diary classに合う形で加工して代入
           final properties = rowProperties
               .map((item) => Property(
-              propertyType.text,
-              item["createdAt"].toDate(),
-              title: item["title"],
-              body: item["article"],
-          ))
+                    propertyType.text,
+                    item["createdAt"].toDate(),
+                    title: item["title"],
+                    body: item["article"],
+                  ))
               .toList();
 
           return Scaffold(
@@ -81,17 +81,17 @@ class _DayMenuState extends State<DayMenu> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return DayPropertyChooseDialog(
-                      //関数Aに関数Bを渡し、関数Aの中で関数Bを実行してもらう 以下が関数A
-                      (property) {
-//                        setState(
-//                          //setStateでやってほしい動作を書く
-//                          () {
-//                            properties.add(property);
-//                          },
-//                        );
-                      },
-                    );
+                    return DayPropertyChooseDialog();
+//                      //関数Aに関数Bを渡し、関数Aの中で関数Bを実行してもらう 以下が関数A
+//                      (property) {
+////                        setState(
+////                          //setStateでやってほしい動作を書く
+////                          () {
+////                            properties.add(property);
+////                          },
+////                        );
+//                      },
+//                    );
                   },
                 );
               },
