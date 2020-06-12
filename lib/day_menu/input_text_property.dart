@@ -1,4 +1,3 @@
-import 'package:comfortable_diary/class/property.dart';
 import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/material.dart';
 

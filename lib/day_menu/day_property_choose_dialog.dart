@@ -12,7 +12,6 @@ class DayPropertyChooseDialog extends StatelessWidget {
       children: <Widget>[
         SimpleDialogOption(
           onPressed: () {
-//            addDayProperty(propertyType.text);
             Navigator.pop(context);
             navigatePagePush(context, InputTextProperty());
           },
@@ -20,7 +19,6 @@ class DayPropertyChooseDialog extends StatelessWidget {
         ),
         SimpleDialogOption(
           onPressed: () {
-//            addDayProperty(propertyType.image);
             Navigator.pop(context);
             navigatePagePush(context, InputImageProperty());
           },

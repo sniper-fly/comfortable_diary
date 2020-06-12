@@ -82,16 +82,6 @@ class _DayMenuState extends State<DayMenu> {
                   context: context,
                   builder: (BuildContext context) {
                     return DayPropertyChooseDialog();
-//                      //関数Aに関数Bを渡し、関数Aの中で関数Bを実行してもらう 以下が関数A
-//                      (property) {
-////                        setState(
-////                          //setStateでやってほしい動作を書く
-////                          () {
-////                            properties.add(property);
-////                          },
-////                        );
-//                      },
-//                    );
                   },
                 );
               },
