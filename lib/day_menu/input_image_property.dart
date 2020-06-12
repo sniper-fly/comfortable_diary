@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,9 +30,19 @@ class _InputImagePropertyState extends State<InputImageProperty> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  FlatButton(
-                    child: Icon(Icons.add_circle),
-                    onPressed: () {},
+                  RaisedButton(
+                    child: Text('upload image'),
+                    onPressed: () {
+                      try {
+                        uploadImage(_image);
+                        print("succeeded");
+                        Navigator.pop(context);
+                      }
+                      catch (error) {
+                        Scaffold.of(context).showSnackBar(SnackBar(content: Text("error!")));
+                        print("error");
+                      }
+                    },
                   ),
                 ],
               ),
