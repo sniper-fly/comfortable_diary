@@ -1,4 +1,3 @@
-import 'package:comfortable_diary/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

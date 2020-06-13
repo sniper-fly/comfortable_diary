@@ -6,7 +6,7 @@ class Property {
   final DateTime createdAt;
   final String title;
   final String body;
-  final Image image;
+  final String imageLink;
 
-  Property(this.type, this.createdAt, {this.title, this.body, this.image});
+  Property(this.type, this.createdAt, {this.title, this.body, this.imageLink});
 }
