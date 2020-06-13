@@ -36,6 +36,6 @@ void createImageProperty(String imgUrl) async {
       .collection("property")
       .add({
     "createdAt": DateTime.now(),
-    "ImageUrl" : imgUrl,
+    "imageLink" : imgUrl,
   });
 }
