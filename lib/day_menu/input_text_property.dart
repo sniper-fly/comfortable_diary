@@ -45,7 +45,7 @@ class _InputTextPropertyState extends State<InputTextProperty> {
                 child: Icon(Icons.add_circle),
                 onPressed: () {
                   try {
-                    createDiary(articleTitle, articleText);
+                    createTextProperty(articleTitle, articleText);
                     Navigator.pop(context);
                   }
                   catch (error) {

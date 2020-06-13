@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +13,7 @@ void navigatePagePush(BuildContext context, Widget page) {
   );
 }
 
-void createDiary(String strTitle, String strArticle) async {
+void createTextProperty(String strTitle, String strArticle) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
@@ -29,16 +27,15 @@ void createDiary(String strTitle, String strArticle) async {
   });
 }
 
-//使えない
-void uploadImage(File img) async {
+void createImageProperty(String imgUrl) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
       .collection("users")
       .document(user.uid)
-      .collection("image")
+      .collection("property")
       .add({
     "createdAt": DateTime.now(),
-    "image" : img,
+    "ImageUrl" : imgUrl,
   });
 }
