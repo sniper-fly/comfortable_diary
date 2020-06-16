@@ -10,7 +10,6 @@ class ImageProperty extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(16.0),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.0)),
-      color: Colors.blue[300],
       child: Image.network(imageLink),
     );
   }

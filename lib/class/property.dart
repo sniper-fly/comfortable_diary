@@ -1,7 +1,7 @@
 import 'package:comfortable_diary/day_menu/property_type.dart';
 
 class Property {
-  final propertyType type;
+  final String type;
   final DateTime createdAt;
   final String title;
   final String body;

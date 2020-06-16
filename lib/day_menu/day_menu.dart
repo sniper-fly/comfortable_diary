@@ -38,13 +38,13 @@ class _DayMenuState extends State<DayMenu> {
 //          diariesに,Diary classに合う形で加工して代入
           final properties = rowProperties
               .map((item) => Property(
-                    propertyType.text,
+                    item["type"],
                     item["createdAt"].toDate(),
                     title: item["title"],
                     body: item["article"],
                     imageLink: item["imageLink"],
                   ))
-              .cast<Property>() as List<Property>;
+              .cast<Property>().toList();
 
           return Scaffold(
             backgroundColor: Colors.grey[200],
@@ -61,7 +61,7 @@ class _DayMenuState extends State<DayMenu> {
                 SliverGrid(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      if (properties[index].type == propertyType.text) {
+                      if (properties[index].type == "text") {
                         return TextProperty(properties[index]);
                       } else {
                         //image
