@@ -38,7 +38,6 @@ class _InputImagePropertyState extends State<InputImageProperty> {
                     onPressed: () async {
                       try {
                         uploadFile();
-                        print("succeeded");
                         Navigator.pop(context);
                       } catch (error) {
                         Scaffold.of(context)

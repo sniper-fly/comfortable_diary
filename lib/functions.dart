@@ -14,10 +14,10 @@ void navigatePagePush(BuildContext context, Widget page) {
   );
 }
 
-Future<String> createTextProperty(String strTitle, String strArticle) async {
+void createTextProperty(String strTitle, String strArticle) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
-  final ref = await Firestore.instance
+  Firestore.instance
       .collection("users")
       .document(user.uid)
       .collection("property")
@@ -27,13 +27,12 @@ Future<String> createTextProperty(String strTitle, String strArticle) async {
     "article": strArticle,
     "createdAt": DateTime.now(),
   });
-  return ref.documentID;
 }
 
-Future<String> createImageProperty(String imgUrl) async {
+void createImageProperty(String imgUrl) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
-  final ref = await Firestore.instance
+  Firestore.instance
       .collection("users")
       .document(user.uid)
       .collection("property")
@@ -42,7 +41,6 @@ Future<String> createImageProperty(String imgUrl) async {
     "createdAt": DateTime.now(),
     "imageLink" : imgUrl,
   });
-  return ref.documentID;
 }
 
 void deleteProperty(String docId) async {

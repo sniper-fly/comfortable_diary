@@ -13,7 +13,7 @@ class TextProperty extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         navigatePagePush(
-            context, TextPropertyDetail(property.title, property.body));
+            context, TextPropertyDetail(property.title, property.body, property.documentId));
       },
       child: Container(
         decoration: BoxDecoration(

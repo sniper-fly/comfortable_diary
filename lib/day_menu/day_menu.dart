@@ -43,6 +43,7 @@ class _DayMenuState extends State<DayMenu> {
                     title: item["title"],
                     body: item["article"],
                     imageLink: item["imageLink"],
+                    documentId: item.documentID,
                   ))
               .cast<Property>().toList();
 
