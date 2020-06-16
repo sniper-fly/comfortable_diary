@@ -1,5 +1,3 @@
-import 'package:comfortable_diary/day_menu/property_type.dart';
-
 class Property {
   final String type;
   final DateTime createdAt;
