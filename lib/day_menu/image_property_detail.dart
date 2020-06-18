@@ -1,9 +1,12 @@
+import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImagePropertyDetail extends StatelessWidget {
   final String imageLink;
-  ImagePropertyDetail(this.imageLink);
+  final String documentId;
+  final String imageDirAddress;
+  ImagePropertyDetail(this.imageLink, this.documentId, this.imageDirAddress);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,9 @@ class ImagePropertyDetail extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-
+                deleteProperty(documentId);
+                deleteStorageFile(imageDirAddress);
+                Navigator.pop(context);
               },
             )
           ],

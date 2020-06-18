@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ void createTextProperty(String strTitle, String strArticle) async {
   });
 }
 
-void createImageProperty(String imgUrl) async {
+void createImageProperty(String imgUrl, String imgDirAddress) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
@@ -38,7 +39,8 @@ void createImageProperty(String imgUrl) async {
       .add({
     "type": "image",
     "createdAt": DateTime.now(),
-    "imageLink" : imgUrl,
+    "imageUrl" : imgUrl,
+    "imageDirAddress" : imgDirAddress,
   });
 }
 
@@ -50,5 +52,12 @@ void deleteProperty(String docId) async {
       .document(user.uid)
       .collection("property")
       .document(docId)
+      .delete();
+}
+
+void deleteStorageFile(String fileAddress) {
+  FirebaseStorage.instance
+      .ref()
+      .child(fileAddress)
       .delete();
 }

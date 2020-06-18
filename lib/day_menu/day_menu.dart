@@ -41,10 +41,12 @@ class _DayMenuState extends State<DayMenu> {
                     item["createdAt"].toDate(),
                     title: item["title"],
                     body: item["article"],
-                    imageLink: item["imageLink"],
+                    imageUrl: item["imageUrl"],
+                    imageDirAddress: item["imageDirAddress"],
                     documentId: item.documentID,
                   ))
-              .cast<Property>().toList();
+              .cast<Property>()
+              .toList();
 
           return Scaffold(
             backgroundColor: Colors.grey[200],
@@ -65,7 +67,11 @@ class _DayMenuState extends State<DayMenu> {
                         return TextProperty(properties[index]);
                       } else {
                         //image
-                        return ImageProperty(properties[index].imageLink);
+                        return ImageProperty(
+                          properties[index].imageUrl,
+                          properties[index].documentId,
+                          properties[index].imageDirAddress,
+                        );
                       }
                     },
                     childCount: properties.length,

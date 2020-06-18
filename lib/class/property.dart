@@ -3,9 +3,11 @@ class Property {
   final DateTime createdAt;
   final String title;
   final String body;
-  final String imageLink;
+  final String imageUrl;
+  final String imageDirAddress;
   final String documentId;
 
   Property(this.type, this.createdAt,
-      {this.title, this.body, this.imageLink, this.documentId});
+      {this.title, this.body,
+        this.imageUrl, this.imageDirAddress, this.documentId});
 }

@@ -5,14 +5,16 @@ import '../image_property_detail.dart';
 
 class ImageProperty extends StatelessWidget {
   final String imageLink;
+  final String documentId;
+  final String imageDirAddress;
 
-  ImageProperty(this.imageLink);
+  ImageProperty(this.imageLink, this.documentId, this.imageDirAddress);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        navigatePagePush(context, ImagePropertyDetail(imageLink));
+        navigatePagePush(context, ImagePropertyDetail(imageLink, documentId, imageDirAddress));
       },
       child: Container(
         margin: EdgeInsets.all(16.0),

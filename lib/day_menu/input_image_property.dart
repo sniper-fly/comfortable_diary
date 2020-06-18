@@ -67,15 +67,17 @@ class _InputImagePropertyState extends State<InputImageProperty> {
   Future uploadFile() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final user = await _auth.currentUser();
+    final String imgDirAddress = '/users/${user.uid}/property/image/${Path.basename(_image.path)}';
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
-        .child('/users/${user.uid}/property/image/${Path.basename(_image.path)}');
+        .child(imgDirAddress);
     StorageUploadTask uploadTask = storageReference.putFile(_image);
+
     await uploadTask.onComplete;
     print('File Uploaded');
     storageReference.getDownloadURL().then(
       (fileURL) {
-        createImageProperty(fileURL);
+        createImageProperty(fileURL, imgDirAddress);
       },
     );
   }
