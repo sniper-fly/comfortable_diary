@@ -20,12 +20,39 @@ class _DayMenuState extends State<DayMenu> {
 
   @override
   Widget build(BuildContext context) {
+    return DayMenuBody(strToday: strToday);
+  }
+}
+
+class DayMenuBody extends StatefulWidget {
+  const DayMenuBody({
+    Key key,
+    @required this.strToday,
+  }) : super(key: key);
+
+  final String strToday;
+
+  @override
+  _DayMenuBodyState createState() => _DayMenuBodyState();
+}
+
+class _DayMenuBodyState extends State<DayMenuBody> {
+  static DateTime currentDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  DateTime currentDateTomorrow = currentDate.add(Duration(days: 1));
+  String strCurrentDate = DateFormat('yyyy  MM/dd').format(currentDate);
+
+  @override
+  Widget build(BuildContext context) {
+//    DateTime today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+//    DateTime tomorrow = today.add(Duration(days: 1));
+
     return StreamBuilder(
         stream: FirebaseAuth.instance.onAuthStateChanged.flatMap((user) =>
             Firestore.instance
                 .collection("users")
                 .document(user.uid)
                 .collection("property")
+                .where("createdAt", isGreaterThanOrEqualTo: currentDate, isLessThan: currentDateTomorrow)
                 .snapshots()),
         builder: (context, snapshot) {
           //main pageの中の一部なので外でもscaffold
@@ -55,8 +82,15 @@ class _DayMenuState extends State<DayMenu> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      Text(strToday),
-                      Text("title"),
+                      Row(
+                        children: <Widget>[
+                          IconButton(icon: Icon(Icons.chevron_left, size: 50.0,),),
+                          Text(strCurrentDate, style: TextStyle(fontSize: 20.0),),
+                          IconButton(icon: Icon(Icons.chevron_right, size: 50.0,),),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      ),
                     ],
                   ),
                 ),
