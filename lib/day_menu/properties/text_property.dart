@@ -1,5 +1,5 @@
 import 'package:comfortable_diary/class/property.dart';
-import 'package:comfortable_diary/day_menu/property_detail.dart';
+import 'package:comfortable_diary/day_menu/text_property_detail.dart';
 import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,7 +13,7 @@ class TextProperty extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         navigatePagePush(
-            context, TextPropertyDetail(property.title, property.body));
+            context, TextPropertyDetail(property.title, property.body, property.documentId));
       },
       child: Container(
         decoration: BoxDecoration(

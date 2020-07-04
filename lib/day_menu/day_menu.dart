@@ -3,7 +3,6 @@ import 'package:comfortable_diary/class/property.dart';
 import 'package:comfortable_diary/day_menu/day_property_choose_dialog.dart';
 import 'package:comfortable_diary/day_menu/properties/image_property.dart';
 import 'package:comfortable_diary/day_menu/properties/text_property.dart';
-import 'package:comfortable_diary/day_menu/property_type.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -38,11 +37,15 @@ class _DayMenuState extends State<DayMenu> {
 //          diariesに,Diary classに合う形で加工して代入
           final properties = rowProperties
               .map((item) => Property(
-                    propertyType.text,
+                    item["type"],
                     item["createdAt"].toDate(),
                     title: item["title"],
                     body: item["article"],
+                    imageUrl: item["imageUrl"],
+                    imageDirAddress: item["imageDirAddress"],
+                    documentId: item.documentID,
                   ))
+              .cast<Property>()
               .toList();
 
           return Scaffold(
@@ -60,11 +63,15 @@ class _DayMenuState extends State<DayMenu> {
                 SliverGrid(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      if (properties[index].type == propertyType.text) {
+                      if (properties[index].type == "text") {
                         return TextProperty(properties[index]);
                       } else {
                         //image
-                        return ImageProperty();
+                        return ImageProperty(
+                          properties[index].imageUrl,
+                          properties[index].documentId,
+                          properties[index].imageDirAddress,
+                        );
                       }
                     },
                     childCount: properties.length,

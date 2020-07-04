@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:comfortable_diary/functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
 
 class InputImageProperty extends StatefulWidget {
   @override
@@ -32,14 +35,13 @@ class _InputImagePropertyState extends State<InputImageProperty> {
                   ),
                   RaisedButton(
                     child: Text('upload image'),
-                    onPressed: () {
+                    onPressed: () async {
                       try {
-                        uploadImage(_image);
-                        print("succeeded");
+                        uploadFile();
                         Navigator.pop(context);
-                      }
-                      catch (error) {
-                        Scaffold.of(context).showSnackBar(SnackBar(content: Text("error!")));
+                      } catch (error) {
+                        Scaffold.of(context)
+                            .showSnackBar(SnackBar(content: Text("error!")));
                         print("error");
                       }
                     },
@@ -55,14 +57,28 @@ class _InputImagePropertyState extends State<InputImageProperty> {
     );
   }
 
-//    return Scaffold(
-//      appBar: AppBar(title: Text("image")),
-//      body: Text("please upload your image file"),
-//    );
   Future<void> getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       _image = image;
     });
+  }
+
+  Future uploadFile() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final user = await _auth.currentUser();
+    final String imgDirAddress = '/users/${user.uid}/property/image/${Path.basename(_image.path)}';
+    StorageReference storageReference = FirebaseStorage.instance
+        .ref()
+        .child(imgDirAddress);
+    StorageUploadTask uploadTask = storageReference.putFile(_image);
+
+    await uploadTask.onComplete;
+    print('File Uploaded');
+    storageReference.getDownloadURL().then(
+      (fileURL) {
+        createImageProperty(fileURL, imgDirAddress);
+      },
+    );
   }
 }

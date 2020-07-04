@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:comfortable_diary/day_menu/day_menu.dart';
 import 'class/diary.dart';
-import 'diary_list/diary_list.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -21,13 +20,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text("comfortable diary"),
           bottom: TabBar(
             tabs: [
-              Tab(icon: Text("diary")),
               Tab(icon: Text("day")),
               Tab(icon: Text("settings"))
             ],
@@ -35,7 +33,6 @@ class _MainPageState extends State<MainPage> {
         ),
         body: TabBarView(
           children: [
-            DiaryList(),
             DayMenu(),
             SettingPage(),
           ],

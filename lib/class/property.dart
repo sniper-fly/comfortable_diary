@@ -1,12 +1,13 @@
-import 'package:comfortable_diary/day_menu/property_type.dart';
-import 'package:flutter/cupertino.dart';
-
 class Property {
-  final propertyType type;
+  final String type;
   final DateTime createdAt;
   final String title;
   final String body;
-  final String imageLink;
+  final String imageUrl;
+  final String imageDirAddress;
+  final String documentId;
 
-  Property(this.type, this.createdAt, {this.title, this.body, this.imageLink});
+  Property(this.type, this.createdAt,
+      {this.title, this.body,
+        this.imageUrl, this.imageDirAddress, this.documentId});
 }

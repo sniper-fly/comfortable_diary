@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,7 @@ void navigatePagePush(BuildContext context, Widget page) {
   );
 }
 
-void createDiary(String strTitle, String strArticle) async {
+void createTextProperty(String strTitle, String strArticle) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
@@ -23,22 +22,42 @@ void createDiary(String strTitle, String strArticle) async {
       .document(user.uid)
       .collection("property")
       .add({
+    "type": "text",
     "title": strTitle,
     "article": strArticle,
     "createdAt": DateTime.now(),
   });
 }
 
-//使えない
-void uploadImage(File img) async {
+void createImageProperty(String imgUrl, String imgDirAddress) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
       .collection("users")
       .document(user.uid)
-      .collection("image")
+      .collection("property")
       .add({
+    "type": "image",
     "createdAt": DateTime.now(),
-    "image" : img,
+    "imageUrl" : imgUrl,
+    "imageDirAddress" : imgDirAddress,
   });
+}
+
+void deleteProperty(String docId) async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final user = await _auth.currentUser();
+  Firestore.instance
+      .collection("users")
+      .document(user.uid)
+      .collection("property")
+      .document(docId)
+      .delete();
+}
+
+void deleteStorageFile(String fileAddress) {
+  FirebaseStorage.instance
+      .ref()
+      .child(fileAddress)
+      .delete();
 }
