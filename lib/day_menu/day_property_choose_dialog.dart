@@ -4,6 +4,8 @@ import 'package:comfortable_diary/functions.dart';
 import 'input_image_property.dart';
 
 class DayPropertyChooseDialog extends StatelessWidget {
+  final DateTime currentDate;
+  DayPropertyChooseDialog(this.currentDate);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class DayPropertyChooseDialog extends StatelessWidget {
         SimpleDialogOption(
           onPressed: () {
             Navigator.pop(context);
-            navigatePagePush(context, InputTextProperty());
+            navigatePagePush(context, InputTextProperty(currentDate));
           },
           child: Text("article"),
         ),

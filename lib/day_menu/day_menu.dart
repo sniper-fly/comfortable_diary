@@ -138,7 +138,7 @@ class _DayMenuBodyState extends State<DayMenuBody> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return DayPropertyChooseDialog();
+                    return DayPropertyChooseDialog(currentDate);
                   },
                 );
               },

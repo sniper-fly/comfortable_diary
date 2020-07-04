@@ -1,7 +1,11 @@
 import 'package:comfortable_diary/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class InputTextProperty extends StatefulWidget {
+  final DateTime currentDate;
+  InputTextProperty(this.currentDate);
+
   @override
   _InputTextPropertyState createState() => _InputTextPropertyState();
 }
@@ -19,6 +23,10 @@ class _InputTextPropertyState extends State<InputTextProperty> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
+              Text(
+                 DateFormat('yyyy  MM/dd').format(widget.currentDate),
+                 style: TextStyle(fontSize: 20.0),
+              ),
               SizedBox(
                 height: 20.0,
               ),
@@ -27,7 +35,6 @@ class _InputTextPropertyState extends State<InputTextProperty> {
                     fontSize: 25.0,
                   ),
                   decoration: InputDecoration(
-
                       border: OutlineInputBorder(borderSide: BorderSide.none),
                       hintText: 'title'),
                   onChanged: (title) {
@@ -54,7 +61,7 @@ class _InputTextPropertyState extends State<InputTextProperty> {
         child: Icon(Icons.add),
         onPressed: () {
           try {
-            createTextProperty(articleTitle, articleText);
+            createTextProperty(articleTitle, articleText, widget.currentDate);
             Navigator.pop(context);
           } catch (error) {
             Scaffold.of(context)

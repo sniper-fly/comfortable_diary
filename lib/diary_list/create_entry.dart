@@ -41,7 +41,7 @@ class _CreateEntryState extends State<CreateEntry> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: () {
-                  createTextProperty(titleText, articleText);
+//                  createTextProperty(titleText, articleText, );
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
