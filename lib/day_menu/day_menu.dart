@@ -37,27 +37,29 @@ class DayMenuBody extends StatefulWidget {
 }
 
 class _DayMenuBodyState extends State<DayMenuBody> {
-  static DateTime currentDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  DateTime currentDateTomorrow = currentDate.add(Duration(days: 1));
-  String strCurrentDate = DateFormat('yyyy  MM/dd').format(currentDate);
+  DateTime currentDate =
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
   @override
   Widget build(BuildContext context) {
-//    DateTime today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-//    DateTime tomorrow = today.add(Duration(days: 1));
+    DateTime currentDateTomorrow = currentDate.add(Duration(days: 1));
+    String strCurrentDate = DateFormat('yyyy  MM/dd').format(currentDate);
 
     return StreamBuilder(
         stream: FirebaseAuth.instance.onAuthStateChanged.flatMap((user) =>
-            Firestore.instance
+            Firestore
+                .instance
                 .collection("users")
                 .document(user.uid)
                 .collection("property")
-                .where("createdAt", isGreaterThanOrEqualTo: currentDate, isLessThan: currentDateTomorrow)
+                .where("createdAt",
+                    isGreaterThanOrEqualTo: currentDate,
+                    isLessThan: currentDateTomorrow)
                 .snapshots()),
         builder: (context, snapshot) {
           //main pageの中の一部なので外でもscaffold
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
           final rowProperties = snapshot.data.documents;
 
@@ -84,9 +86,23 @@ class _DayMenuBodyState extends State<DayMenuBody> {
                     [
                       Row(
                         children: <Widget>[
-                          IconButton(icon: Icon(Icons.chevron_left, size: 50.0,),),
-                          Text(strCurrentDate, style: TextStyle(fontSize: 20.0),),
-                          IconButton(icon: Icon(Icons.chevron_right, size: 50.0,),),
+                          IconButton(
+                              icon: Icon(Icons.chevron_left, size: 50.0),
+                              onPressed: () {
+                                setState(() {
+                                  currentDate = currentDate.add(Duration(days: -1));
+                                });
+                              }),
+                          Text(strCurrentDate,
+                              style: TextStyle(fontSize: 20.0)),
+                          IconButton(
+                            icon: Icon(Icons.chevron_right, size: 50.0),
+                            onPressed: () {
+                              setState(() {
+                                currentDate = currentDate.add(Duration(days: 1));
+                              });
+                            },
+                          ),
                         ],
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
