@@ -14,7 +14,7 @@ void navigatePagePush(BuildContext context, Widget page) {
   );
 }
 
-void createTextProperty(String strTitle, String strArticle, DateTime currentDate) async {
+void createTextProperty(String strTitle, String strArticle, DateTime selectedDate) async {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final user = await _auth.currentUser();
   Firestore.instance
@@ -25,7 +25,7 @@ void createTextProperty(String strTitle, String strArticle, DateTime currentDate
     "type": "text",
     "title": strTitle,
     "article": strArticle,
-    "createdAt": currentDate,
+    "createdAt": selectedDate,
   });
 }
 

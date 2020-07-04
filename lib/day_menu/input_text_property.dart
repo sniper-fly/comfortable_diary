@@ -13,6 +13,13 @@ class InputTextProperty extends StatefulWidget {
 class _InputTextPropertyState extends State<InputTextProperty> {
   String articleText = '';
   String articleTitle = '';
+  DateTime selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = widget.currentDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +30,22 @@ class _InputTextPropertyState extends State<InputTextProperty> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              Text(
-                 DateFormat('yyyy  MM/dd').format(widget.currentDate),
-                 style: TextStyle(fontSize: 20.0),
+              GestureDetector(
+                child: Text(
+                  DateFormat('yyyy  MM/dd').format(selectedDate),
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                onTap: () async {
+                  final DateTime date = await showDatePicker(
+                      context: context,
+                      initialDate: selectedDate,
+                      firstDate: DateTime(2010),
+                      lastDate: DateTime(2050));
+                  if (date != null)
+                    setState(() {
+                      selectedDate = date;
+                    });
+                },
               ),
               SizedBox(
                 height: 20.0,
@@ -40,10 +60,10 @@ class _InputTextPropertyState extends State<InputTextProperty> {
                   onChanged: (title) {
                     articleTitle = title;
                   }),
-//              SizedBox(
-//                height: 20.0,
-//              ),
-              Divider(height: 10.0, thickness: 2.0,),
+              Divider(
+                height: 10.0,
+                thickness: 2.0,
+              ),
               TextField(
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
@@ -61,7 +81,7 @@ class _InputTextPropertyState extends State<InputTextProperty> {
         child: Icon(Icons.add),
         onPressed: () {
           try {
-            createTextProperty(articleTitle, articleText, widget.currentDate);
+            createTextProperty(articleTitle, articleText, selectedDate);
             Navigator.pop(context);
           } catch (error) {
             Scaffold.of(context)
