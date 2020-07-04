@@ -61,3 +61,14 @@ void deleteStorageFile(String fileAddress) {
       .child(fileAddress)
       .delete();
 }
+
+Future<String> getUserEmailAddress() async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final user = await _auth.currentUser();
+  final document = await Firestore.instance
+  .collection("users")
+  .document(user.uid)
+  .get();
+
+  return document.data["email"];
+}
