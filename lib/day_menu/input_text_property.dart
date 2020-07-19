@@ -30,10 +30,13 @@ class _InputTextPropertyState extends State<InputTextProperty> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 10.0,
+              ),
               GestureDetector(
                 child: Text(
                   DateFormat('yyyy  MM/dd').format(selectedDate),
-                  style: TextStyle(fontSize: 20.0),
+                  style: TextStyle(fontSize: 24.0),
                 ),
                 onTap: () async {
                   final DateTime date = await showDatePicker(
@@ -41,10 +44,11 @@ class _InputTextPropertyState extends State<InputTextProperty> {
                       initialDate: selectedDate,
                       firstDate: DateTime(2010),
                       lastDate: DateTime(2050));
-                  if (date != null)
+                  if (date != null) {
                     setState(() {
                       selectedDate = date;
                     });
+                  }
                 },
               ),
               SizedBox(
