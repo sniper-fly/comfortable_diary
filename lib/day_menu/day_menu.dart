@@ -84,23 +84,51 @@ class _DayMenuBodyState extends State<DayMenuBody> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
+                      SizedBox(height: 10.0),
                       Row(
                         children: <Widget>[
                           IconButton(
-                              icon: Icon(Icons.chevron_left, size: 50.0),
-                              onPressed: () {
+                            iconSize: 50.0,
+                            icon: Icon(Icons.chevron_left),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  currentDate =
+                                      currentDate.add(Duration(days: -1));
+                                },
+                              );
+                            },
+                          ),
+                          OutlineButton(
+                            child: Text(
+                              strCurrentDate,
+                              style: TextStyle(
+                                fontSize: 24.0,
+                              ),
+                            ),
+                            onPressed: () async {
+                              DateTime date = await showDatePicker(
+                                  context: context,
+                                  initialDate: currentDate,
+                                  firstDate: DateTime(2010),
+                                  lastDate: DateTime(2050));
+                              if (date != null) {
                                 setState(() {
-                                  currentDate = currentDate.add(Duration(days: -1));
+                                  currentDate = date;
                                 });
-                              }),
-                          Text(strCurrentDate,
-                              style: TextStyle(fontSize: 20.0)),
+                              }
+                            },
+                          ),
                           IconButton(
+                            iconSize: 50.0,
                             icon: Icon(Icons.chevron_right, size: 50.0),
                             onPressed: () {
-                              setState(() {
-                                currentDate = currentDate.add(Duration(days: 1));
-                              });
+                              setState(
+                                () {
+                                  currentDate =
+                                      currentDate.add(Duration(days: 1));
+                                },
+                              );
                             },
                           ),
                         ],
