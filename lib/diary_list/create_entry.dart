@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../functions.dart';
 import '../main_page.dart';
 
 class CreateEntry extends StatefulWidget {
@@ -41,7 +40,7 @@ class _CreateEntryState extends State<CreateEntry> {
               FlatButton(
                 child: Icon(Icons.add_circle),
                 onPressed: () {
-                  createTextProperty(titleText, articleText);
+//                  createTextProperty(titleText, articleText, );
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {

@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
           title: Text("comfortable diary"),
           bottom: TabBar(
             tabs: [
-              Tab(icon: Text("day")),
+              Tab(icon: Text("diary")),
               Tab(icon: Text("settings"))
             ],
           ),
